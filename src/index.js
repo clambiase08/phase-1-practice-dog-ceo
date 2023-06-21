@@ -15,23 +15,51 @@ console.log('%c HI', 'color: firebrick')
 //[x] write a render images function that creates image elements, sets their src values equal to the key.values from the json data, and appends them to the DOM
 //[x] pass the render images function into the fetch function
 
+//Challenge 2
+//After the first challenge is completed, add JavaScript that:
+//const breedUrl = "https://dog.ceo/api/breeds/list/all";
+//on page load, fetches all the dog breeds using the url above ⬆️
+//adds the breeds to the page in the <ul> provided in index.html
 
-function getImages(url) {
+//Then I will need to:
+//[x] define a variable for the ul container in global scope
+//[x] write a function to render the breeds to the DOM that creates a li element, sets the value equal to the keys in the json data, and appends them to the DOM
+//[x] pass the render breeds function into the fetch function, returning the object keys and iterating over that array
+
+
+const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
+const breedUrl = "https://dog.ceo/api/breeds/list/all"
+
+function getData(url) {
     return fetch(url)
     .then(res => res.json())
 
 }
 
-getImages('https://dog.ceo/api/breeds/image/random/4')
+getData(imgUrl)
 .then(resObj => {
     resObj.message.forEach(renderImage)
 })
 
+getData(breedUrl)
+.then(resObj => {
+    return Object.keys(resObj.message)
+    .forEach(renderBreeds)
+})
+
 const imageContainer = document.querySelector("#dog-image-container")
+const dogBreeds = document.querySelector("#dog-breeds")
 
 function renderImage(message) {
     const image = document.createElement('img')
     image.src = message
 
     imageContainer.appendChild(image)
+}
+
+function renderBreeds(message) {
+    const li = document.createElement('li')
+    li.textContent = message
+
+    dogBreeds.appendChild(li)
 }
