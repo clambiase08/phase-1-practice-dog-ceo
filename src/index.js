@@ -27,6 +27,13 @@ console.log('%c HI', 'color: firebrick')
 //[x] pass the render breeds function into the fetch function, returning the object keys and iterating over that array
 
 
+//Challenge 3
+//Once all of the breeds are rendered in the <ul>, add JavaScript so that, when the user clicks on any one of the <li>s, the font color of that <li> changes. This can be a color of your choosing.
+
+//Then I will need to:
+//[x] add an event listener to the li element in the render breeds function that passes in a click event, and a callback function that sets the color of the text to be red
+
+
 const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
 const breedUrl = "https://dog.ceo/api/breeds/list/all"
 
@@ -62,4 +69,8 @@ function renderBreeds(message) {
     li.textContent = message
 
     dogBreeds.appendChild(li)
+
+    li.addEventListener('click', (e) =>{
+        e.target.style.color = "red"
+    })
 }
